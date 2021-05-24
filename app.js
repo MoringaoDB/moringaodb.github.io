@@ -68,27 +68,33 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   const db = firebase.firestore();
 
+  db.collection("Moringa-Entries").get().then((querySnapshot) => {
+querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data().Title}`);
+});
+});
+
   const searchByName = async ({
     search = '',
     limit = 5,
     lastNameOfLastPerson = ''
   } = {}) => {
     const snapshot = await db.collection('Moringa-Entries')
-      .where('keywords', 'array-contains', search.toLowerCase())
+      .where('Keywords', 'array-contains', search.toLowerCase())
       .orderBy('Title')
       .startAfter(lastNameOfLastPerson)
       .limit(limit)
       .get();
+    
 
     const convertDocumentToTableRows = (acc, doc) => {
       const moringaoDB = doc.data();
       const tr = document.createElement('tr');
-
       const names = [ moringaoDB.Title, 
                       moringaoDB['Disease/Cell Line/Model/Strain'], 
                       moringaoDB['Primary Focus'], 
-                      moringaoDB['Year of Publication'] ];   
-   
+                      moringaoDB['Year of Publication'] ];
+  
       names.map(n => {
         const td = document.createElement('td');
         td.textContent = n;
@@ -130,4 +136,4 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
   }
   window.addEventListener('scroll', lazyLoad);
-});
+  });
