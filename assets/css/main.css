@@ -1,12 +1,14 @@
 html {
     line-height: 1.15;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    /*-ms-text-size-adjust: 100%;*/
+    /*-webkit-text-size-adjust: 100%*/
 }
 
 body {
     margin: 0
 }
+
+
 
 article,aside,footer,header,nav,section {
     display: block
@@ -38,7 +40,7 @@ pre {
 
 a {
     background-color: transparent;
-    -webkit-text-decoration-skip: objects
+    /*-webkit-text-decoration-skip: objects*/
 }
 
 abbr[title] {
@@ -200,10 +202,6 @@ template {
 
 html {
     height: 100%
-}
-
-table th {
-    width: auto !important;
 }
 
 fieldset {
