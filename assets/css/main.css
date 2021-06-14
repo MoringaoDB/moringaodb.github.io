@@ -1,14 +1,12 @@
 html {
     line-height: 1.15;
-    /*-ms-text-size-adjust: 100%;*/
-    /*-webkit-text-size-adjust: 100%*/
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
 }
 
 body {
     margin: 0
 }
-
-
 
 article,aside,footer,header,nav,section {
     display: block
@@ -40,7 +38,7 @@ pre {
 
 a {
     background-color: transparent;
-    /*-webkit-text-decoration-skip: objects*/
+    -webkit-text-decoration-skip: objects
 }
 
 abbr[title] {
@@ -594,8 +592,7 @@ legend {
     -ms-flex-align: center;
     align-items: center;
     font-family: poppins,sans-serif;
-    background: -webkit-linear-gradient(rgba(167, 155, 55, 0.8), rgba(80, 192, 126, 0.8)), url(../images/moringa.jpg);
-    overflow: hidden;
+    background: url(../images/moringa.jpg);
     background-size: cover;
     background-position: center center;
     padding: 15px
@@ -607,11 +604,11 @@ legend {
 }
 
 .s006 form legend {
-    font-size: 60px;
+    font-size: 36px;
     color: #fff;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 20px
+    margin-bottom: 59px
 }
 
 .s006 form .inner-form {

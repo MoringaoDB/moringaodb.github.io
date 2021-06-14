@@ -89,20 +89,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     updatePeopleRows(await searchByName());
-
     textBoxSearch.addEventListener('keyup', async (e) => updatePeopleRows(await searchByName({ search: e.target.value })));
 
     async function lazyLoad() {
-        //const scrollIsAtTheBottom = (document.body.scrollHeight - window.innerHeight) <= window.scrollY;
 
-        function atEnd() {
-            var c = [document.scrollingElement.scrollHeight, document.body.scrollHeight, document.body.offsetHeight].sort(function(a,b){return b-a}) // select longest candidate for scrollable length
-            return (window.innerHeight + window.scrollY === c[0]) // compare with scroll position + some give
-        }
+        const scrollIsAtTheBottom = (document.body.scrollHeight - window.innerHeight) <= window.scrollY;
+        console.log(scrollIsAtTheBottom)
 
-        let docWidth = document.documentElement.offsetHeight;
-
-        //console.log(scrollIsAtTheBottom)
         if (scrollIsAtTheBottom) {
         const lastNameOfLastPerson = rowsPeople.lastChild.firstElementChild.textContent;
 
