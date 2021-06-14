@@ -30,7 +30,7 @@
 }
 .card__year {
   color: #7b7992;
-  margin-bottom: 15px;
+  margin-bottom: 1px;
   display: block;
   font-weight: 500;
   font-family: poppins,sans-serif;
@@ -44,15 +44,24 @@
 }
 .card__author {
   color: #7b7992;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  display: block;
+  font-weight: 500;
+  font-family: poppins,sans-serif;
+}
+.card__comments {
+  color: #0d0925;
+  margin-bottom: 10px;
   display: block;
   font-weight: 500;
   font-family: poppins,sans-serif;
 }
 .card__text {
+  font-size: 15px;
   color: #4e4a67;
   margin-bottom: 30px;
   line-height: 1.5em;
+  font-family: poppins,sans-serif;
 }
 .card__button {
   display: inline-flex;
@@ -67,7 +76,7 @@
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-  width: 40%
+  width: 30%
 }
 @media screen and (max-width: 576px) {
   .card__button {

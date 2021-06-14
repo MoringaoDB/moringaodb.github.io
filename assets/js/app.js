@@ -19,9 +19,48 @@ document.addEventListener('DOMContentLoaded', async function () {
         const card = document.createElement('div');
         card.className = "card";
 
-        const body = `<div class="card__title">${moringaoDB['Title']}<span class="card__year"><span class="badge bg-light text-dark"">${moringaoDB['Year of Publication']}</span></span></div>`+
-        `<span class="card__author">${moringaoDB['Authors']}</span>`+
-        `<div class="card__text">Primary Focus: ${moringaoDB['Primary Focus']} Disease/Cell Line/Model/Strain: ${moringaoDB['Disease/Cell Line/Model/Strain']}</div>`+
+        const title = moringaoDB['Title'];
+        const year = moringaoDB['Year of Publication'];
+
+        const body = 
+        `<div class="card__title">`+
+            `${title}`+
+        `</div>`+
+        `<span class="card__year">`+
+            `<b>Year of Publication:</b> &nbsp`+
+            `<span class="badge bg-light text-dark">`+
+                `${year}`+
+            `</span>`+
+        `</span>`+
+        `<span class="card__author">`+
+            `<b>Authors:</b> &nbsp ${moringaoDB['Authors']}`+
+        `</span>`+
+        `<div class="card__text">`+
+            `<div class="table-responsive">`+
+                `<table class="table table-bordered table-hover">`+
+                    `<thead>`+
+                        `<tr>`+
+                        `<th scope="col">Primary Focus</th>`+
+                        `<th scope="col">Part</th>`+
+                        `<th scope="col">Disease/Cell Line/Model/Strain</th>`+
+                        `<th scope="col">Type</th>`+
+                        `</tr>`+
+                    `</thead>`+
+                    `<tbody>`+
+                        `<tr>`+
+                            `<td>${moringaoDB['Primary Focus']}</td>`+
+                            `<td>${moringaoDB['Plant part being used']}</td>`+
+                            `<td>${moringaoDB['Disease/Cell Line/Model/Strain']}</td>`+
+                            `<td>${moringaoDB['Type of Paper']}</td>`+
+                        `</tr>`+
+                    `</tbody>`+
+                `</table>`+
+            `</div>`+
+            `<span class="card__comments">`+
+                `<b>Comments:</b> &nbsp ${moringaoDB['Comments']}`+
+            `</span>`+
+        `</div>`+
+        
         `<a href="${moringaoDB['DOI/ Link']}" class="card__button" target="_blank">DOI/Link</a>`
 
         card.innerHTML = body;
