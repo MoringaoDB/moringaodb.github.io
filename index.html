@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" >
 
-<head>
+  <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="follow"/>
-  <meta http-equiv="expires" content="30"/>
-  <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
-  <title>MoringaoDB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="follow"/>
+    <meta http-equiv="expires" content="30"/>
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+    <meta name="description" content="MoringaoDB is a comprehensive database and search engine for the best research done on Moringa. MoringaoDB allows you to search for Research Articles, Thesis, Poster papers, Books, Review Articles, etc. and also curate them based on Plant part used, Year of Publication and many more!"/>
 
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/fonts.css" />
-  <link rel="stylesheet" href="assets/css/cards.css" />
+    <meta property="og:title" content="MoringaoDB: A curated database of best research on Moringa">
+    <meta property="og:description" content="A comprehensive database and search engine for the best research done on Moringa. MoringaoDB allows you to search for Research Articles, Thesis, Poster papers, Books, Review Articles, etc. and also curate them based on Plant part used, Year of Publication and many more!">
+    <meta property="og:image" content="https://github.com/MoringaoDB/moringaodb.github.io/blob/main/assets/images/moringa.jpg">
+    <meta property="og:url" content="https://moringaodb.github.io/">
+    <meta name="twitter:card" content="MoringaoDB is a comprehensive database and search engine for the best research done on Moringa. MoringaoDB allows you to search for Research Articles, Thesis, Poster papers, Books, Review Articles, etc. and also curate them based on Plant part used, Year of Publication and many more!">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  
-</head>
+    <title>MoringaoDB: A curated database of best research on Moringa</title>
 
-<body>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/fonts.css" />
+    <link rel="stylesheet" href="assets/css/cards.css" />
 
-  <div class="s006">
-    <form>
-      <fieldset>
-        <legend>MoringaoDB</legend>
-        <div class="inner-form">
-          <div class="input-field">
-            <span class="btn-search">
-              <img src="assets\images\algolia-blue-mark.svg" alt="Algolia" >
-            </span>
-            <input id="textBoxSearch" placeholder="Moringaaa" onkeydown="return (event.keyCode!=13);" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+  </head>
+
+  <body>
+
+    <div class="s006">
+      <form>
+        <fieldset>
+          <legend>MoringaoDB</legend>
+          <div class="inner-form">
+            <div class="input-field">
+              <span class="btn-search">
+                <img src="assets\images\algolia-blue-mark.svg" />
+              </span>
+              <input id="textBoxSearch" placeholder="Moringaaa" onkeydown="return (event.keyCode!=13);" />
+            </div>
           </div>
-        </div>
-        <div class="suggestion-wrap">
-          <span>Search by:</span>
-          <span>Title</span>
-          <span>Authors</span>
-          <span>Year</span>
-          <span>Type</span>
-          <span>Plant Part</span>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+          <div class="suggestion-wrap">
+            <span>Search by:</span>
+            <span>Title</span>
+            <span>Authors</span>
+            <span>Year</span>
+            <span>Type</span>
+            <span>Plant Part</span>
+          </div>
+        </fieldset>
+      </form>
+    </div>
 
-  <section id="moringaEntries"></section>
-  <div class="container" id="button_container"></div>
+    <section id="moringaEntries"></section>
+    <div class="container" id="button_container"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
-  <script src="assets/js/search.js"></script>
-  <script src="assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/app.js"></script>
 
 
   </body>
 
 </html>
- 
