@@ -675,10 +675,10 @@ legend {
     align-items: center
 }
 
-.s006 form .inner-form .input-field .btn-search svg {
-    fill: #ccc;
-    width: 30px;
-    height: 30px;
+.s006 form .inner-form .input-field .btn-search img {
+    /*fill: #ccc;*/
+    width: 24px;
+    height: 24px;
     transition: all .2s ease-out,color .2s ease-out
 }
 
@@ -719,7 +719,7 @@ legend {
         font-size: 16px
     }
 
-    .s006 form .inner-form .input-field .btn-search svg {
+    .s006 form .inner-form .input-field .btn-search img {
         width: 26px;
         height: 26px
     }

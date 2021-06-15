@@ -1,17 +1,31 @@
 document.addEventListener('DOMContentLoaded', async function () {
 
     const db = firebase.firestore();
+
+    var docRef = db.collection("Moringa-Entries").doc("121");
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+
+
     const searchByName = async ({
-    search = '',
-    limit = 5,
-    lastNameOfLastPerson = ''} = {}) => {
+        search = '',
+        limit = 5,
+        lastNameOfLastPerson = ''} = {}) => {
         const snapshot = await db.collection('Moringa-Entries')
-            .where('Keywords', 'array-contains', search.toLowerCase())
+            .where('Plant part being used', 'array-contains', search.toLowerCase())
             .orderBy('Title')
             .startAfter(lastNameOfLastPerson)
             .limit(limit)
             .get();
-
 
         const convertDocumentToTableRows = (acc, doc) => {
         const moringaoDB = doc.data();
@@ -21,6 +35,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const title = moringaoDB['Title'];
         const year = moringaoDB['Year of Publication'];
+        const authors = moringaoDB['Authors'];
+        const type = moringaoDB['Type of Paper'];
+        const disease = moringaoDB['Disease & Cell Line'];
+        const part = moringaoDB['Plant part being used'];
+        const focus = moringaoDB['Primary Focus'];
+        const comments = moringaoDB['Comments']
+        const doi = moringaoDB['DOI/ Link']
+
+        console.log(moringaoDB)
 
         const body = 
         `<div class="card__title">`+
@@ -33,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             `</span>`+
         `</span>`+
         `<span class="card__author">`+
-            `<b>Authors:</b> &nbsp ${moringaoDB['Authors']}`+
+            `<b>Authors:</b> &nbsp ${authors}`+
         `</span>`+
         `<div class="card__text">`+
             `<div class="table-responsive">`+
@@ -48,35 +71,35 @@ document.addEventListener('DOMContentLoaded', async function () {
                     `</thead>`+
                     `<tbody>`+
                         `<tr>`+
-                            `<td>${moringaoDB['Primary Focus']}</td>`+
-                            `<td>${moringaoDB['Plant part being used']}</td>`+
-                            `<td>${moringaoDB['Disease/Cell Line/Model/Strain']}</td>`+
-                            `<td>${moringaoDB['Type of Paper']}</td>`+
+                            `<td>${focus}</td>`+
+                            `<td>${part}</td>`+
+                            `<td>${disease}</td>`+
+                            `<td>${type}</td>`+
                         `</tr>`+
                     `</tbody>`+
                 `</table>`+
             `</div>`+
             `<span class="card__comments">`+
-                `<b>Comments:</b> &nbsp ${moringaoDB['Comments']}`+
+                `<b>Comments:</b> &nbsp ${comments}`+
             `</span>`+
         `</div>`+
-        
-        `<a href="${moringaoDB['DOI/ Link']}" class="card__button" target="_blank">DOI/Link</a>`
+        `<a href="${doi}" class="card__button" target="_blank">DOI/Link</a>`
 
         card.innerHTML = body;
 
         return acc.concat(card);
 
         };
+
         const wrapTableRowsInFragment = (acc, card) => {
             acc.appendChild(card);
             return acc;
         }
 
-    return snapshot
-        .docs
-        .reduce(convertDocumentToTableRows, [])
-        .reduce(wrapTableRowsInFragment, document.createDocumentFragment());
+        return snapshot
+            .docs
+            .reduce(convertDocumentToTableRows, [])
+            .reduce(wrapTableRowsInFragment, document.createDocumentFragment());
 
     };
 
@@ -94,17 +117,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     async function lazyLoad() {
 
         const scrollIsAtTheBottom = (document.body.scrollHeight - window.innerHeight) <= window.scrollY;
-        console.log(scrollIsAtTheBottom)
+        //console.log(scrollIsAtTheBottom)
 
         if (scrollIsAtTheBottom) {
-        const lastNameOfLastPerson = rowsPeople.lastChild.firstElementChild.textContent;
+            const lastNameOfLastPerson = rowsPeople.lastChild.firstElementChild.textContent;
 
-        rowsPeople.appendChild(await searchByName({
-            search: textBoxSearch.value,
-            lastNameOfLastPerson: lastNameOfLastPerson
-        }));
+            rowsPeople.appendChild(await searchByName({
+                search: textBoxSearch.value,
+                lastNameOfLastPerson: lastNameOfLastPerson
+            }));
         }
     }
+
     window.addEventListener('scroll', lazyLoad);
 
 });
