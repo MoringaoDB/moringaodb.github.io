@@ -84,6 +84,12 @@ sub {
     bottom: -.25em
 }
 
+em {
+    background: rgb(117, 223, 144);
+    font-style: normal;
+
+}
+
 sup {
     top: -.5em
 }
